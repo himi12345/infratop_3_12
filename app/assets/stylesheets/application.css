@@ -24,7 +24,7 @@ strong{
   font-weight: bold;
 }
 
-p{
+p,ol,ul,td{
   font-size:13px;
   line-height: 18px;
   margin:33px;
@@ -37,4 +37,16 @@ a:visited{
 a:-webkit-any-link{
   cursor:pointer;
   text-decoration: underline;
+}
+
+/*ここからindex*/
+
+table{
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+
+th{
+  padding-bottom: 5px;
+  font-weight: bols;
 }
