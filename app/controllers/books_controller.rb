@@ -14,23 +14,28 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = Book.new(book_params)
+    @book = Book.new(book_params)
+    @books = Book.all
     # 成功時のフラッシュメッセージの記述
-    if book.save
+    if @book.save
       flash[:notice] = "Book was successfully created."
       # 下記の記述は redirect_to book_path(book.id) が推奨される
-      redirect_to '/books/'+(book.id).to_s
+      redirect_to '/books/'+(@book.id).to_s
     else
+      # renderはアクションを行わずにviewを開く
       render :index
     end
   end
 
   def update
-    book = Book.find(params[:id])
+    @book = Book.find(params[:id])
     # 成功時のフラッシュメッセージのの記述
-    book.update(book_params)
-    flash[:notice] = "Book was successfully updated."
-    redirect_to book_path(book.id)
+    if @book.update(book_params)
+      flash[:notice] = "Book was successfully updated."
+      redirect_to book_path(@book.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
